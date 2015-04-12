@@ -4,7 +4,7 @@
     zack@zacklovatt.com
  
     Name: zl_ColourProjectItems
-    Version: 0.1
+    Version: 0.2
  
     Description:
         This script creates a null at one of 9 key points for a layer. Will consider
@@ -22,21 +22,21 @@
 
     var zl_CPI__scriptName = "zl_ColourProjectItems";
     
-	/****************************** 
+    /****************************** 
         zl_ColourProjectItems()
-	
+    
         Description:
         This function contains the main logic for this script.
-	 
+     
         Parameters:
         thisObj - "this" object.
         curPos - position to put null
         parentNull - bool, whether to parent null to layer
         xOffset & yOffset - amount of pixels to shift null
-	 
+     
         Returns:
         Nothing.
-	******************************/
+    ******************************/
     function zl_ColourProjectItems(thisObj){
 
         var thisComp = app.project.activeItem;
@@ -189,21 +189,25 @@
     } // end function moveNull
     
 
-    function zl_ColourProjectItems_buildNameArray(thisObj){
-        var labelColArray = new Array;
-        var labelNameArray = new Array;
+    // 0 = name
+    // 1 = colour (hex)
+    function zl_ColourProjectItems_buildLabelArray(target){
+        var labelArray = new Array;
 
         for (var i = 1; i <= 16; i++){
-            labelColArray[i-1] = "";
-    
-            labelNameArray[i-1] = app.preferences.getPrefAsString("Label Preference Text Section 5", "Label Text ID 2 # " + i);
-            var labelColour = app.preferences.getPrefAsString("Label Preference Color Section 5", "Label Color ID 2 # " + i);
+            if (target == 1){
+                labelArray[i-1] = "";
 
-            for (var j = 1; j < labelColour.length; j++)
-                labelColArray[i-1] += labelColour.charCodeAt(j).toString(16);
+                var labelColour = app.preferences.getPrefAsString("Label Preference Color Section 5", "Label Color ID 2 # " + i);
+            
+                for (var j = 1; j < labelColour.length; j++)
+                    labelArray[i-1] += labelColour.charCodeAt(j).toString(16);
+            } else {
+                labelArray[i-1] = app.preferences.getPrefAsString("Label Preference Text Section 5", "Label Text ID 2 # " + i);
+            }
         }
 
-        return labelNameArray;
+        return labelArray;
     }
 
     /****************************** 
@@ -243,11 +247,48 @@
         }
 
         { // Dropdown
-            var myArray = zl_ColourProjectItems_buildNameArray(this);
-
-            win.colourList = win.add('dropdownlist', undefined, myArray); 
-            win.colourList.selection = 0;
             
+            
+            var labelNameArray = zl_ColourProjectItems_buildLabelArray(0);
+            var labelColourArray = zl_ColourProjectItems_buildLabelArray(1);
+
+            win.colourGroup = win.add('group', undefined);
+            
+            win.colourGroup.colourList = win.colourGroup.add('dropdownlist', undefined, labelNameArray); 
+            win.colourGroup.colourList.selection = 0;
+ 
+ function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    
+    return [parseInt(result[1], 16)/255, parseInt(result[2], 16)/255, parseInt(result[3], 16)/255];
+}
+
+function customDraw(){
+    with( this ) {
+        graphics.drawOSControl();
+        graphics.rectPath(0,0,size[0],size[1]);
+        graphics.fillPath(fillBrush);
+        if (text)
+        graphics.drawString(text,textPen,(size[0]-graphics.measureString (text,graphics.font,size[0])[0])/2,3,graphics.font);
+    }
+}
+ 
+ 
+var btn2 = win.colourGroup.add('iconbutton', undefined, undefined, {name:'orange', style: 'toolbutton'});
+btn2.size = [20,20];
+newCol = win.colourGroup.colourList.selection;
+myCol = hexToRgb(labelColourArray[0]);
+btn2.fillBrush = btn2.graphics.newBrush( btn2.graphics.BrushType.SOLID_COLOR, myCol );
+btn2.onDraw = customDraw;
+        
+        thisItem.textPen = btn2.graphics.newPen (btn2.graphics.PenType.SOLID_COLOR,[0,0.5,0,1], 1);
+        
+        thisItem = win.colourGroup.colourList.children[0];  
+        thisItem.textPen = btn2.graphics.newPen (btn2.graphics.PenType.SOLID_COLOR,[0,0.5,0,1], 1);
+        //thisItem.graphics.foregroundColor = thisItem.graphics.newPen (thisItem.graphics.PenType.SOLID_COLOR, myCol, 1);
+        
+        
+        
         }
     
         { // Buttons
