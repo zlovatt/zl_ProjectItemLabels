@@ -4,7 +4,7 @@
     zack@zacklovatt.com
 
     Name: zl_ColourProjectItems
-    Version: 0.9
+    Version: 1.0
  
     Description:
         This script sets the label colour for all selected items as specified.
