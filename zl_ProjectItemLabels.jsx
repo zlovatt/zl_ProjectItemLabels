@@ -4,11 +4,15 @@
     zack@zacklovatt.com
 
     Name: zl_ColourProjectItems
-    Version: 0.8
+    Version: 0.9
  
     Description:
-        This script creates a null at one of 9 key points for a layer. Will consider
-        rotation, scale, etc.
+        This script sets the label colour for all selected items as specified.
+        If a folder is in the selection, the script will recursively search through
+        and find all items within that folder.
+        
+        Useful for when importing existing projects/AEPs, to set the label colour
+        in one fell swoop for all imported objects.
         
         CS5+
         Originally requested by Ronald Molina (ronalith.com)
@@ -38,11 +42,22 @@
     ******************************/
     function zl_ColourProjectItems(thisObj, curColour, objArray){
         var userItems = app.project.selection;
+        var noChecks = true;
         
-        if (userItems.length == 0){
-            alert("Select at least one item!", zl_CPI__scriptName);
+        for (var i = 0; i < objArray.length; i++)
+            if (objArray[i].value){
+                noChecks = false;
+                break;
+            }
+            
+        if (noChecks){ // If no item type is selected
+            alert("Select an item type!");
         } else {
-            zl_ColourProjectItems_colourItems(curColour, objArray, userItems, null);
+            if (userItems.length == 0){ // If no items are selected
+                alert("Select at least one item!", zl_CPI__scriptName);
+            } else {
+                zl_ColourProjectItems_colourItems(curColour, objArray, userItems, null);
+            }
         }
 
     } // end function CreateCornerNull
@@ -133,6 +148,10 @@
             win.targetGroup.precompToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Precomp'); 
             win.targetGroup.solidToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Solid'); 
             win.targetGroup.placeholderToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Placeholder');
+            
+            win.targetGroup.allToggle.value = true;
+            for (var i = 1; i < win.targetGroup.children.length; i++)
+                    win.targetGroup.children[i].enabled = false;
             
             win.targetGroup.allToggle.onClick = function(){
                 for (var i = 1; i < win.targetGroup.children.length; i++)
