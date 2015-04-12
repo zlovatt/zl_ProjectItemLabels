@@ -2,7 +2,7 @@
     zl_ColourProjectItems
     Copyright (c) 2013 Zack Lovatt. All rights reserved.
     zack@zacklovatt.com
- 
+
     Name: zl_ColourProjectItems
     Version: 0.6
  
@@ -37,126 +37,78 @@
         Returns:
         Nothing.
     ******************************/
-    function zl_ColourProjectItems(thisObj, curColour){
-        var thisComp = app.project.activeItem;
-        var numItems = app.project.items.length;
+    function zl_ColourProjectItems(thisObj, curColour, objArray){
         var userItems = app.project.selection;
         
-        
-        for (var i = 0; i < userItems.length; i++){
-            var thisLayer = userItems[i];
-
-            thisLayer.label = curColour+1;
-            
-            //zl_ColourProjectItems_moveNull(thisComp, thisLayer, newNull, curPos, xOffset, yOffset, zOffset);
-
+/*     if (userItems.length == 0){
+            alert("Select at least one item!", zl_CPI__scriptName);
+        } else {
+            zl_ColourProjectItems_colourItems(curColour, objArray, userItems, 1);
         }
-        
+*/
+
+    zl_ColourProjectItems_colourItems(curColour, objArray, app.project.item(5).items, 1);
+/*
+   for (var i = 0; i < userItems.length; i++){
+        var thisItem = userItems[i];
+        if (thisItem instanceof FolderItem){ // is folder  
+//            alert('in2');
+            //alert(thisItem.numItems);
+            zl_ColourProjectItems_colourItems(curColour, objArray, app.project.item(5).items, 1);
+            }
+   }
+              */      
+    
     } // end function CreateCornerNull
 
 
     /****************************** 
-        zl_ColourProjectItems_moveNull()
+        zl_ColourProjectItems_colourItems()
           
         Description:
-        Moves the null to one of 9 corners/key points
+        Colours items
          
         Parameters:
-        thisComp - current comp
-        sourceLayer - original layer to create null from
-        targetLayer - the new null, to shift
-        targetPos - target corner to shift to
-        xOffset & yOffset - user-set offsets to position
+        curColour - label colour to use
+        objArray - array of objects to colour
+        userItems - collection of items to colour
         
         Returns:
         Nothing.
      ******************************/
-    function zl_ColourProjectItems_moveNull(thisComp, sourceLayer, targetLayer, targetPos, xOffset, yOffset, zOffset){
-        var is3d = sourceLayer.threeDLayer;
-        var resetRot = false;
+    function zl_ColourProjectItems_colourItems(curColour, objArray, userItems, isFolder){
+        var curLength = 0;
         
-        if (is3d){
-            var tempRot = [sourceLayer.xRotation.value, sourceLayer.yRotation.value, sourceLayer.zRotation.value];
-            var tempOrient = sourceLayer.orientation.value;
-        } else
-            tempRot = sourceLayer.rotation.value;
         
-        if (sourceLayer.rotation.isModified){
-            sourceLayer.rotation.setValue(0);
-            resetRot = true;
-        }
-    
-        if (is3d)
-            if (sourceLayer.xRotation.isModified || sourceLayer.yRotation.isModified || sourceLayer.zRotation.isModified || sourceLayer.orientation.isModified){
-                sourceLayer.orientation.setValue([0,0,0]);
+        // if (isFolder == 0)
+            curLength = userItems.length;
+        //else
+         //   curLength = userItems.numItems;
+            
+            alert(curLength);
+            
+        for (var i = 0; i < curLength; i++){
+             var thisItem = userItems[i];
+                
+            if (objArray[0].value){
+                thisItem.label = curColour;
+            } else {
+                if ((thisItem instanceof FolderItem) && (objArray[1].value)) // is folder
+                    thisItem.label = curColour;
 
-                sourceLayer.xRotation.setValue(0);
-                sourceLayer.yRotation.setValue(0);
-                sourceLayer.zRotation.setValue(0);
-                resetRot = true;
+                if ((thisItem instanceof CompItem) && (objArray[3].value)) // is precomp
+                    thisItem.label = curColour;
+                        
+                if (thisItem instanceof FootageItem){
+                    if (!((thisItem.mainSource instanceof SolidSource) || (thisItem.mainSource instanceof PlaceholderSource)) && objArray[2].value){ // is footage
+                        thisItem.label = curColour;
+                    } else if ((thisItem.mainSource instanceof SolidSource) && (objArray[4].value)){ // is solid
+                        thisItem.label = curColour;
+                    } else if ((thisItem.mainSource instanceof PlaceholderSource) && (objArray[5].value)){ // is placeholder
+                        thisItem.label = curColour;
+                    }
+                }
             }
-
-        var sourceRect = sourceLayer.sourceRectAtTime(thisComp.time,false);
-        var newPos = [sourceRect.width/2, sourceRect.height/2, 0];
-
-        switch (targetPos){
-            case 0:
-                newPos = [0, 0, 0];
-                break;
-            case 1:
-                newPos = [sourceRect.width/2, 0, 0];
-                break;
-            case 2:
-                newPos = [sourceRect.width, 0, 0];
-                break;
-            case 3:
-                newPos = [0, sourceRect.height/2, 0];
-                break;
-            case 4:
-                newPos = [sourceRect.width/2, sourceRect.height/2, 0];
-                break;
-            case 5:
-                newPos = [sourceRect.width, sourceRect.height/2, 0];
-                break;
-            case 6:
-                newPos = [0, sourceRect.height, 0];
-                break;
-            case 7:
-                newPos = [sourceRect.width/2, sourceRect.height, 0];
-                break;
-            case 8:
-                newPos = [sourceRect.width, sourceRect.height, 0];
-                break;
-        }
-
-        var oldAnch = sourceLayer.anchorPoint.value;
-
-        var xAdjust = newPos[0] + sourceRect.left;
-        var yAdjust = newPos[1] + sourceRect.top;
-
-        var xShift = (xAdjust - oldAnch[0]) * (sourceLayer.scale.value[0]/100);
-        var yShift = (yAdjust - oldAnch[1])  * (sourceLayer.scale.value[1]/100);    
-        var zShift = (oldAnch[2]) * (sourceLayer.scale.value[2]/100);
-
-        var xPos = sourceLayer.position.value[0];
-        var yPos = sourceLayer.position.value[1];
-        var zPos = sourceLayer.position.value[2];
-
-        targetLayer.position.setValue([xPos + xShift + parseInt(xOffset), yPos + yShift + parseInt(yOffset), zPos + zShift + parseInt(zOffset)]);
-
-        if (resetRot == true){
-            targetLayer.parent = sourceLayer;
-
-            if (!is3d)
-                sourceLayer.rotation.setValue(tempRot);
-            else if (is3d){
-                sourceLayer.zRotation.setValue(tempRot[2]);
-                sourceLayer.yRotation.setValue(tempRot[1]);
-                sourceLayer.xRotation.setValue(tempRot[0]);
-                sourceLayer.orientation.setValue(tempOrient); 
-            }
-
-            targetLayer.parent = null;
         }
     } // end function moveNull
     
@@ -183,79 +135,44 @@
             win.targetGroup.alignChildren = "left";
             
             win.targetGroup.allToggle = win.targetGroup.add('checkbox', undefined, '\u00A0All'); 
-            win.targetGroup.footageToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Footage'); 
-            win.targetGroup.folderToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Folder'); 
+            win.targetGroup.folderToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Folder');
+            win.targetGroup.footageToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Footage');
+            win.targetGroup.precompToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Precomp'); 
             win.targetGroup.solidToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Solid'); 
-            win.targetGroup.nullToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Null'); 
             win.targetGroup.placeholderToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Placeholder');
+            
             
             win.targetGroup.allToggle.onClick = function(){
                 for (var i = 1; i < win.targetGroup.children.length; i++)
                     win.targetGroup.children[i].enabled = Math.abs(1-this.value);
             }
+        
         }
 
         { // Dropdown
-            function hexToRgb(hex) {
-                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-                return [parseInt(result[1], 16)/255, parseInt(result[2], 16)/255, parseInt(result[3], 16)/255];
-            } // hexToRgb
-
-            function customDraw(){
-                with( this ) {
-                    graphics.drawOSControl();
-                    graphics.rectPath(0,0,size[0],size[1]);
-                    graphics.fillPath(fillBrush);
-                }
-            } // customDraw
-
-            { // Draw swatch grid
-                win.swatchGroup = win.add('panel', undefined, 'Colour');
-                win.swatchGroup.orientation = "column";
-                
-                var k = 0;
-                var labelNameArray = ["Red", "Yellow", "Aqua", "Pink", "Lavender", "Peach", "Sea Foam", "Blue", "Green", "Purple", "Orange", "Brown", "Fuschia", "Cyan", "Sandstone", "Dark Green"];
-                var labelColourArray = ["#B53838", "#E4D84C", "#A9CBC7", "#E5BCC9", "#A9A9CA", "#E7C19E", "#B3C7B3", "#677DE0", "#4AA44C", "#8E2C9A", "#E8920D", "#7F452A", "#F46DD6", "#3DA2A5", "#A89677", "#1E401E"];
-                var curColour = 0;
-                
-                for (var i = 0; i < 4; i++){
-                    win.swatchGroup.children = win.swatchGroup.add('group',undefined);
-                    win.swatchGroup.children[i].orientation = "row";
-                    
-                    for (var j = 0; j < 4; j++){
-                        win.swatchGroup.children[i].children = win.swatchGroup.children[i].add("button", undefined, labelNameArray[k], {style: "toolbutton"});
-                        win.swatchGroup.children[i].children[j].id = k;
-                        
-                        try{ myCol = hexToRgb(labelColourArray[k]) }
-                        catch(e) { myCol = [1,1,1] }
-                        
-                        win.swatchGroup.children[i].children[j].size = [13,13];
-                        win.swatchGroup.children[i].children[j].fillBrush = win.swatchGroup.graphics.newBrush( win.swatchGroup.graphics.BrushType.SOLID_COLOR, myCol );
-                        win.swatchGroup.children[i].children[j].onDraw = customDraw;
-
-                        win.swatchGroup.children[i].children[j].onClick = function(){
-                            win.colourButton.text = "Colour (" + this.text + ")";
-                            curColour = this.id;
-                        }
-                        
-                        k++;
-                    }
-                }
-           } // end squareGroup
-       
+            var labelNameArray = ["None", "Red", "Yellow", "Aqua", "Pink", "Lavender", "Peach", "Sea Foam", "Blue", "Green", "Purple", "Orange", "Brown", "Fuschia", "Cyan", "Sandstone", "Dark Green"];
+            var curColour = 0;
+            
+            win.colourPanel = win.add('panel', undefined, 'Colour');
+            win.colourPanel.colourList = win.colourPanel.add('dropdownlist', undefined, labelNameArray);
+            win.colourPanel.colourList.selection = 0;
+            
+            win.colourPanel.colourList.onChange = function(){
+                curColour = win.colourPanel.colourList.selection.index;
+            }
         } // end Dropdown
     
         { // Buttons
-            win.colourButton = win.add('button', undefined, 'Colour'); 
+            win.colourButton = win.add('button', undefined, 'Colour Items'); 
             win.colourButton.alignment = 'fill';
 
             win.colourButton.onClick = function () {
-
+                
                 if (app.project) {
                     var userItems = app.project.selection;
                     if (userItems != 0) {
                         app.beginUndoGroup(zl_CPI__scriptName);
-                        zl_ColourProjectItems(thisObj, curColour);
+                        zl_ColourProjectItems(thisObj, curColour, win.targetGroup.children);
                         app.endUndoGroup();
                     } else {
                         alert("Select at least one item!", zl_CPI__scriptName);
@@ -264,9 +181,7 @@
                     alert("Open a project!", zl_CPI__scriptName);
                 }
             }
-        }
-
-
+        } // end Buttons
 
         if (win instanceof Window) {
             win.show();
