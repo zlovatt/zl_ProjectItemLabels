@@ -4,7 +4,7 @@
     zack@zacklovatt.com
  
     Name: zl_ColourProjectItems
-    Version: 0.3
+    Version: 0.4
  
     Description:
         This script creates a null at one of 9 key points for a layer. Will consider
@@ -192,12 +192,12 @@
     // 0 = name
     // 1 = colour (hex)
     function zl_ColourProjectItems_buildLabelArray(target){
-        var labelArray = new Array;
+        var labelArray = [];
 
         for (var i = 1; i <= 16; i++){
+            labelArray[i-1] = "";
+            
             if (target == 1){
-                labelArray[i-1] = "";
-
                 var labelColour = app.preferences.getPrefAsString("Label Preference Color Section 5", "Label Color ID 2 # " + i);
             
                 for (var j = 1; j < labelColour.length; j++)
@@ -257,6 +257,8 @@
             win.colourGroup.colourList = win.colourGroup.add('dropdownlist', undefined, labelNameArray); 
             win.colourGroup.colourList.selection = 0;
  
+            thisItem = win.colourGroup.colourList; 
+ 
             function hexToRgb(hex) {
                 var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
                 return [parseInt(result[1], 16)/255, parseInt(result[2], 16)/255, parseInt(result[3], 16)/255];
@@ -267,35 +269,86 @@
                     graphics.drawOSControl();
                     graphics.rectPath(0,0,size[0],size[1]);
                     graphics.fillPath(fillBrush);
-                    if(text)
-                        graphics.drawString(text,textPen,(size[0]-graphics.measureString (text,graphics.font,size[0])[0])/2,3,graphics.font);
+                        if( text ) graphics.drawString(text,textPen,(size[0]-graphics.measureString (text,graphics.font,size[0])[0])/2,3,graphics.font);
                 }
             }
  
-            var pnl = win.add('panel', undefined, 'My Panel');
-            var btn = pnl.add('dropdownlist', undefined, labelNameArray);
-            btn.fillBrush = btn.graphics.newBrush( btn.graphics.BrushType.SOLID_COLOR, [1, 0.7, 0, 0.5] );
-            btn.text = "Hello, Harbs";
-            btn.textPen = btn.graphics.newPen (btn.graphics.PenType.SOLID_COLOR,[0,0.5,0,1], 1);
-            btn.onDraw = customDraw;
-
-            //alert(win.colourGroup.colourList.children[0].index);
             
-            myObj = win.colourGroup.colourList;
-            myObj.graphics.foregroundColor = myObj.graphics.newPen (myObj.graphics.PenType.SOLID_COLOR, [0.6, 0.0, 0.5], 1);
+            { // squareGroup
+                win.swatchGroup = win.add('group', undefined);
+                
+                /*
+                    win.swatchGroup.row1 = win.swatchGroup.add('group', undefined);
+                        win.swatchGroup.row1.sw1 = win.swatchGroup.row1.add('button', undefined, undefined);
+                        win.swatchGroup.row1.sw2 = win.swatchGroup.row1.add('button', undefined, undefined);
+                        win.swatchGroup.row1.sw3 = win.swatchGroup.row1.add('button', undefined, undefined);
+                        win.swatchGroup.row1.sw4 = win.swatchGroup.row1.add('button', undefined, undefined);
+                        
+                    win.swatchGroup.row2 = win.swatchGroup.add('group', undefined);
+                        win.swatchGroup.row2.sw1 = win.swatchGroup.row2.add('button', undefined, undefined);
+                        win.swatchGroup.row2.sw2 = win.swatchGroup.row2.add('button', undefined, undefined);
+                        win.swatchGroup.row2.sw3 = win.swatchGroup.row2.add('button', undefined, undefined);
+                        win.swatchGroup.row2.sw4 = win.swatchGroup.row2.add('button', undefined, undefined);
+                        
+                    win.swatchGroup.row3 = win.swatchGroup.add('group', undefined);
+                        win.swatchGroup.row3.sw1 = win.swatchGroup.row3.add('button', undefined, undefined);
+                        win.swatchGroup.row3.sw2 = win.swatchGroup.row3.add('button', undefined, undefined);
+                        win.swatchGroup.row3.sw3 = win.swatchGroup.row3.add('button', undefined, undefined);
+                        win.swatchGroup.row3.sw4 = win.swatchGroup.row3.add('button', undefined, undefined);
 
-            ewG12IO = win.colourGroup.add('dropdownlist',undefined,[]);
-            
-            ewG12IO.graphics.foregroundColor = ewG12IO.graphics.newPen (win.colourGroup.graphics.PenType.SOLID_COLOR, hexToRgb(labelColourArray[0]), 1);
-            
-            var j = 0;
+                    win.swatchGroup.row4 = win.swatchGroup.add('group', undefined);
+                        win.swatchGroup.row4.sw1 = win.swatchGroup.row4.add('button', undefined, undefined);
+                        win.swatchGroup.row4.sw2 = win.swatchGroup.row4.add('button', undefined, undefined);
+                        win.swatchGroup.row4.sw3 = win.swatchGroup.row4.add('button', undefined, undefined);
+                        win.swatchGroup.row4.sw4 = win.swatchGroup.row4.add('button', undefined, undefined); */
 
-            for (var i = 0; i < 3; i++){
-                ewG12IO.add("item", "("+i+")  "+labelNameArray[i]);
-                ewG12IO.graphics.foregroundColor = ewG12IO.graphics.newPen (win.colourGroup.graphics.PenType.SOLID_COLOR, hexToRgb(labelColourArray[i]), 1);
-                ewG12IO.selection = i;
-            }
+                    win.swatchGroup.orientation = "column";
+                    var k = 0;
 
+                    for (var i = 0; i < 4; i++){
+                        win.swatchGroup.children = win.swatchGroup.add('group',undefined);
+                        
+                        win.swatchGroup.children[i].orientation = "row";
+
+                        for (var j = 0; j < 4; j++){
+
+                            win.swatchGroup.children[i].children = win.swatchGroup.children[i].add('button', undefined, undefined);
+                            
+                            try{
+                                myCol = hexToRgb(labelColourArray[k]);
+                            } catch(e) {
+                                myCol = [1,1,1];
+                            }
+                        
+                            win.swatchGroup.children[i].children[j].size = [13,13];
+                            win.swatchGroup.children[i].children[j].fillBrush = win.swatchGroup.graphics.newBrush( win.swatchGroup.graphics.BrushType.SOLID_COLOR, myCol );
+                            win.swatchGroup.children[i].children[j].onDraw = customDraw;
+                            
+                            k++;
+                        }
+                    }
+                
+/*                    win.swatchGroup.row1.sw1.size = win.swatchGroup.row1.sw2.size = win.swatchGroup.row1.sw3.size = win.swatchGroup.row1.sw4.size = 
+                        win.swatchGroup.row2.sw1.size = win.swatchGroup.row2.sw2.size = win.swatchGroup.row2.sw3.size = win.swatchGroup.row2.sw4.size =
+                        win.swatchGroup.row3.sw1.size = win.swatchGroup.row3.sw2.size = win.swatchGroup.row3.sw3.size = win.swatchGroup.row3.sw4.size =
+                        win.swatchGroup.row4.sw1.size = win.swatchGroup.row4.sw2.size = win.swatchGroup.row4.sw3.size = win.swatchGroup.row4.sw4.size = [13,13];
+
+                    win.swatchGroup.row1.sw1.fillBrush = win.swatchGroup.row1.sw2.fillBrush = win.swatchGroup.row1.sw3.fillBrush = win.swatchGroup.row1.sw4.fillBrush = 
+                        win.swatchGroup.row2.sw1.fillBrush = win.swatchGroup.row2.sw2.fillBrush = win.swatchGroup.row2.sw3.fillBrush = win.swatchGroup.row2.sw4.fillBrush =
+                        win.swatchGroup.row3.sw1.fillBrush = win.swatchGroup.row3.sw2.fillBrush = win.swatchGroup.row3.sw3.fillBrush = win.swatchGroup.row3.sw4.fillBrush =
+                        win.swatchGroup.row4.sw1.fillBrush = win.swatchGroup.row4.sw2.fillBrush = win.swatchGroup.row4.sw3.fillBrush = win.swatchGroup.row4.sw4.fillBrush = win.swatchGroup.graphics.newBrush( win.swatchGroup.graphics.BrushType.SOLID_COLOR, myCol );
+               
+                    win.swatchGroup.row1.sw1.onDraw = win.swatchGroup.row1.sw2.onDraw = win.swatchGroup.row1.sw3.onDraw = win.swatchGroup.row1.sw4.onDraw = 
+                        win.swatchGroup.row2.sw1.onDraw = win.swatchGroup.row2.sw2.onDraw = win.swatchGroup.row2.sw3.onDraw = win.swatchGroup.row2.sw4.onDraw =
+                        win.swatchGroup.row3.sw1.onDraw = win.swatchGroup.row3.sw2.onDraw = win.swatchGroup.row3.sw3.onDraw = win.swatchGroup.row3.sw4.onDraw =
+                        win.swatchGroup.row4.sw1.onDraw = win.swatchGroup.row4.sw2.onDraw = win.swatchGroup.row4.sw3.onDraw = win.swatchGroup.row4.sw4.onDraw = customDraw;*/ 
+           }
+        
+            thisItem.onChange = function() {
+                myCol = hexToRgb(labelColourArray[thisItem.selection.index]);
+                win.swatchGroup.row1.sw1.fillBrush = win.swatchGroup.graphics.newBrush( win.swatchGroup.graphics.BrushType.SOLID_COLOR, myCol );
+            };        
+        
         }
     
         { // Buttons
