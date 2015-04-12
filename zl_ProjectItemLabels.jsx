@@ -4,7 +4,7 @@
     zack@zacklovatt.com
  
     Name: zl_ColourProjectItems
-    Version: 0.2
+    Version: 0.3
  
     Description:
         This script creates a null at one of 9 key points for a layer. Will consider
@@ -257,38 +257,45 @@
             win.colourGroup.colourList = win.colourGroup.add('dropdownlist', undefined, labelNameArray); 
             win.colourGroup.colourList.selection = 0;
  
- function hexToRgb(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    
-    return [parseInt(result[1], 16)/255, parseInt(result[2], 16)/255, parseInt(result[3], 16)/255];
-}
+            function hexToRgb(hex) {
+                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return [parseInt(result[1], 16)/255, parseInt(result[2], 16)/255, parseInt(result[3], 16)/255];
+            }
 
-function customDraw(){
-    with( this ) {
-        graphics.drawOSControl();
-        graphics.rectPath(0,0,size[0],size[1]);
-        graphics.fillPath(fillBrush);
-        if (text)
-        graphics.drawString(text,textPen,(size[0]-graphics.measureString (text,graphics.font,size[0])[0])/2,3,graphics.font);
-    }
-}
+            function customDraw(){
+                with( this ) {
+                    graphics.drawOSControl();
+                    graphics.rectPath(0,0,size[0],size[1]);
+                    graphics.fillPath(fillBrush);
+                    if(text)
+                        graphics.drawString(text,textPen,(size[0]-graphics.measureString (text,graphics.font,size[0])[0])/2,3,graphics.font);
+                }
+            }
  
- 
-var btn2 = win.colourGroup.add('iconbutton', undefined, undefined, {name:'orange', style: 'toolbutton'});
-btn2.size = [20,20];
-newCol = win.colourGroup.colourList.selection;
-myCol = hexToRgb(labelColourArray[0]);
-btn2.fillBrush = btn2.graphics.newBrush( btn2.graphics.BrushType.SOLID_COLOR, myCol );
-btn2.onDraw = customDraw;
-        
-        thisItem.textPen = btn2.graphics.newPen (btn2.graphics.PenType.SOLID_COLOR,[0,0.5,0,1], 1);
-        
-        thisItem = win.colourGroup.colourList.children[0];  
-        thisItem.textPen = btn2.graphics.newPen (btn2.graphics.PenType.SOLID_COLOR,[0,0.5,0,1], 1);
-        //thisItem.graphics.foregroundColor = thisItem.graphics.newPen (thisItem.graphics.PenType.SOLID_COLOR, myCol, 1);
-        
-        
-        
+            var pnl = win.add('panel', undefined, 'My Panel');
+            var btn = pnl.add('dropdownlist', undefined, labelNameArray);
+            btn.fillBrush = btn.graphics.newBrush( btn.graphics.BrushType.SOLID_COLOR, [1, 0.7, 0, 0.5] );
+            btn.text = "Hello, Harbs";
+            btn.textPen = btn.graphics.newPen (btn.graphics.PenType.SOLID_COLOR,[0,0.5,0,1], 1);
+            btn.onDraw = customDraw;
+
+            //alert(win.colourGroup.colourList.children[0].index);
+            
+            myObj = win.colourGroup.colourList;
+            myObj.graphics.foregroundColor = myObj.graphics.newPen (myObj.graphics.PenType.SOLID_COLOR, [0.6, 0.0, 0.5], 1);
+
+            ewG12IO = win.colourGroup.add('dropdownlist',undefined,[]);
+            
+            ewG12IO.graphics.foregroundColor = ewG12IO.graphics.newPen (win.colourGroup.graphics.PenType.SOLID_COLOR, hexToRgb(labelColourArray[0]), 1);
+            
+            var j = 0;
+
+            for (var i = 0; i < 3; i++){
+                ewG12IO.add("item", "("+i+")  "+labelNameArray[i]);
+                ewG12IO.graphics.foregroundColor = ewG12IO.graphics.newPen (win.colourGroup.graphics.PenType.SOLID_COLOR, hexToRgb(labelColourArray[i]), 1);
+                ewG12IO.selection = i;
+            }
+
         }
     
         { // Buttons
