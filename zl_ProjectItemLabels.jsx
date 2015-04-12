@@ -4,7 +4,7 @@
     zack@zacklovatt.com
  
     Name: zl_ColourProjectItems
-    Version: 0.5
+    Version: 0.6
  
     Description:
         This script creates a null at one of 9 key points for a layer. Will consider
@@ -37,48 +37,20 @@
         Returns:
         Nothing.
     ******************************/
-    function zl_ColourProjectItems(thisObj){
-
+    function zl_ColourProjectItems(thisObj, curColour){
         var thisComp = app.project.activeItem;
-
         var numItems = app.project.items.length;
+        var userItems = app.project.selection;
         
+        
+        for (var i = 0; i < userItems.length; i++){
+            var thisLayer = userItems[i];
 
-        var labelColArray = new Array;
-        var labelNameArray = new Array;
+            thisLayer.label = curColour+1;
+            
+            //zl_ColourProjectItems_moveNull(thisComp, thisLayer, newNull, curPos, xOffset, yOffset, zOffset);
 
-        for (var i = 1; i <= 16; i++){
-            labelColArray[i] = "";
-    
-            labelNameArray[i] = app.preferences.getPrefAsString("Label Preference Text Section 5", "Label Text ID 2 # " + i);
-            var labelColour = app.preferences.getPrefAsString("Label Preference Color Section 5", "Label Color ID 2 # " + i);
-
-            for (var j = 1; j < labelColour.length; j++)
-                labelColArray[i] += labelColour.charCodeAt(j).toString(16);
         }
-
-//        alert(app.project
-        
-        
-        /*
-        for (var i = 0; i < userLayers.length; i++){
-            var thisLayer = userLayers[i];
-            var newNull = thisComp.layers.addNull();
-            
-            newNull.moveBefore(thisLayer);
-            newNull.name = thisLayer.name + " - " + newNull.name;
-            
-            if (thisLayer.threeDLayer == true)
-                newNull.threeDLayer = true;
-
-            if (thisLayer.parent != null)
-                newNull.parent = thisLayer.parent;
-            
-            zl_ColourProjectItems_moveNull(thisComp, thisLayer, newNull, curPos, xOffset, yOffset, zOffset);
-
-            if (parentNull == true)
-                thisLayer.parent = newNull;
-        }*/
         
     } // end function CreateCornerNull
 
@@ -189,31 +161,6 @@
     } // end function moveNull
     
 
-// peach = 5
-    // 0 = name
-    // 1 = colour (hex)
-    function zl_ColourProjectItems_buildLabelArray(target){
-        var labelArray = [];
-
-        for (var i = 1; i <= 16; i++){
-        //for (var i = 11; i <= 11; i++){
-            labelArray[i-1] = "";
-            
-            if (target == 1){
-                var labelColour = app.preferences.getPrefAsString("Label Preference Color Section 5", "Label Color ID 2 # " + i);
-            
-                for (var j = 1; j < labelColour.length; j++){
-                    labelArray[i-1] += labelColour.charCodeAt(j).toString(16);
-                    //alert(labelArray[i-1]);
-                }
-            } else {
-                labelArray[i-1] = app.preferences.getPrefAsString("Label Preference Text Section 5", "Label Text ID 2 # " + i);
-            }
-        }
-
-        return labelArray;
-    }
-
     /****************************** 
         zl_ColourProjectItems_createPalette()
           
@@ -253,13 +200,12 @@
                 var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
                 return [parseInt(result[1], 16)/255, parseInt(result[2], 16)/255, parseInt(result[3], 16)/255];
             } // hexToRgb
-        
+
             function customDraw(){
                 with( this ) {
                     graphics.drawOSControl();
                     graphics.rectPath(0,0,size[0],size[1]);
                     graphics.fillPath(fillBrush);
-                    //    if( text ) graphics.drawString(text,textPen,(size[0]-graphics.measureString (text,graphics.font,size[0])[0])/2,3,graphics.font);
                 }
             } // customDraw
 
@@ -268,9 +214,9 @@
                 win.swatchGroup.orientation = "column";
                 
                 var k = 0;
-                var labelNameArray = zl_ColourProjectItems_buildLabelArray(0);
-                var labelColourArray = zl_ColourProjectItems_buildLabelArray(1);
-                var curColour = labelNameArray[0];
+                var labelNameArray = ["Red", "Yellow", "Aqua", "Pink", "Lavender", "Peach", "Sea Foam", "Blue", "Green", "Purple", "Orange", "Brown", "Fuschia", "Cyan", "Sandstone", "Dark Green"];
+                var labelColourArray = ["#B53838", "#E4D84C", "#A9CBC7", "#E5BCC9", "#A9A9CA", "#E7C19E", "#B3C7B3", "#677DE0", "#4AA44C", "#8E2C9A", "#E8920D", "#7F452A", "#F46DD6", "#3DA2A5", "#A89677", "#1E401E"];
+                var curColour = 0;
                 
                 for (var i = 0; i < 4; i++){
                     win.swatchGroup.children = win.swatchGroup.add('group',undefined);
@@ -278,7 +224,8 @@
                     
                     for (var j = 0; j < 4; j++){
                         win.swatchGroup.children[i].children = win.swatchGroup.children[i].add("button", undefined, labelNameArray[k], {style: "toolbutton"});
-                            
+                        win.swatchGroup.children[i].children[j].id = k;
+                        
                         try{ myCol = hexToRgb(labelColourArray[k]) }
                         catch(e) { myCol = [1,1,1] }
                         
@@ -287,8 +234,8 @@
                         win.swatchGroup.children[i].children[j].onDraw = customDraw;
 
                         win.swatchGroup.children[i].children[j].onClick = function(){
-                            win.explodeButton.text = 'Colour (' + this.text + ')';
-                            win.explodeButton.characters = win.explodeButton.text.length;
+                            win.colourButton.text = "Colour (" + this.text + ")";
+                            curColour = this.id;
                         }
                         
                         k++;
@@ -299,33 +246,19 @@
         } // end Dropdown
     
         { // Buttons
-            win.explodeButton = win.add('button', undefined, 'Colour'); 
-            win.explodeButton.alignment = 'fill';
+            win.colourButton = win.add('button', undefined, 'Colour'); 
+            win.colourButton.alignment = 'fill';
 
-            win.explodeButton.onClick = function () {
-                for (var i = 0; i < win.cornerGroup.children.length; i++){
-                    if (win.cornerGroup.children[i].value == true){
-                        curPos = i;
-                    }
-                }
-            
-                var parentNull = win.parentOption.value;
-                var xOffset = checkStr(xOffRow.xOffInput.text);
-                var yOffset = checkStr(yOffRow.yOffInput.text);
-                var zOffset = checkStr(zOffRow.zOffInput.text);
+            win.colourButton.onClick = function () {
 
                 if (app.project) {
-                    var activeItem = app.project.activeItem;
-                    if (activeItem != null && (activeItem instanceof CompItem)) {
+                    var userItems = app.project.selection;
+                    if (userItems != 0) {
                         app.beginUndoGroup(zl_CPI__scriptName);
-                        if (!xOffset || !yOffset || !zOffset){
-                            alert("Invalid input!");
-                        }else{
-                            zl_ColourProjectItems(thisObj, curPos, parentNull, xOffset, yOffset, zOffset);
-                        }
+                        zl_ColourProjectItems(thisObj, curColour);
                         app.endUndoGroup();
                     } else {
-                        alert("Select a layer!", zl_CPI__scriptName);
+                        alert("Select at least one item!", zl_CPI__scriptName);
                     }
                 } else {
                     alert("Open a project!", zl_CPI__scriptName);
