@@ -1,9 +1,9 @@
 ﻿/**********************************************************************************************
-    zl_ColourProjectItems
+    zl_ProjectItemLabels
     Copyright (c) 2013 Zack Lovatt. All rights reserved.
     zack@zacklovatt.com
 
-    Name: zl_ColourProjectItems
+    Name: zl_ProjectItemLabels
     Version: 1.0
  
     Description:
@@ -23,10 +23,10 @@
         
 **********************************************************************************************/
 
-    var zl_CPI__scriptName = "zl_ColourProjectItems";
+    var zl_PIL__scriptName = "zl_ProjectItemLabels";
     
     /****************************** 
-        zl_ColourProjectItems()
+        zl_ProjectItemLabels()
     
         Description:
         This function contains the main logic for this script.
@@ -40,7 +40,7 @@
         Returns:
         Nothing.
     ******************************/
-    function zl_ColourProjectItems(thisObj, curColour, objArray){
+    function zl_ProjectItemLabels(thisObj, curColour, objArray){
         var userItems = app.project.selection;
         var noChecks = true;
         
@@ -54,9 +54,9 @@
             alert("Select an item type!");
         } else {
             if (userItems.length == 0){ // If no items are selected
-                alert("Select at least one item!", zl_CPI__scriptName);
+                alert("Select at least one item!", zl_PIL__scriptName);
             } else {
-                zl_ColourProjectItems_colourItems(curColour, objArray, userItems, null);
+                zl_ProjectItemLabels_colourItems(curColour, objArray, userItems, null);
             }
         }
 
@@ -64,7 +64,7 @@
 
 
     /****************************** 
-        zl_ColourProjectItems_colourItems()
+        zl_ProjectItemLabels_colourItems()
           
         Description:
         Colours items
@@ -78,7 +78,7 @@
         Returns:
         Nothing.
      ******************************/
-    function zl_ColourProjectItems_colourItems(curColour, objArray, userItems, folderLoc){
+    function zl_ProjectItemLabels_colourItems(curColour, objArray, userItems, folderLoc){
         var curLength = 0;
         var itemCounter = 0;
         var startCount = 0;
@@ -97,12 +97,12 @@
             if (objArray[0].value){
                 thisItem.label = curColour;
                 if (thisItem instanceof FolderItem)
-                    zl_ColourProjectItems_colourItems (curColour, objArray, thisItem.items, itemCounter);
+                    zl_ProjectItemLabels_colourItems (curColour, objArray, thisItem.items, itemCounter);
             } else {
                 if (thisItem instanceof FolderItem){ // is folder
                     if (objArray[1].value)
                         thisItem.label = curColour;
-                    zl_ColourProjectItems_colourItems (curColour, objArray, thisItem.items, itemCounter);
+                    zl_ProjectItemLabels_colourItems (curColour, objArray, thisItem.items, itemCounter);
                 }
 
                 if ((thisItem instanceof CompItem) && (objArray[3].value)) // is precomp
@@ -123,7 +123,7 @@
     
 
     /****************************** 
-        zl_ColourProjectItems_createPalette()
+        zl_ProjectItemLabels_createPalette()
           
         Description:
         Creates ScriptUI Palette Panel
@@ -135,8 +135,8 @@
         Returns:
         Nothing
      ******************************/
-    function zl_ColourProjectItems_createPalette(thisObj) { 
-        var win = (thisObj instanceof Panel) ? thisObj : new Window('palette', 'Colour Project Items',undefined); 
+    function zl_ProjectItemLabels_createPalette(thisObj) { 
+        var win = (thisObj instanceof Panel) ? thisObj : new Window('palette', 'Project Label Items',undefined); 
       
         { // Target
             win.targetGroup = win.add('panel', undefined, 'Target', {borderStyle: "etched"});
@@ -174,7 +174,7 @@
         } // end Dropdown
     
         { // Buttons
-            win.colourButton = win.add('button', undefined, 'Colour Items'); 
+            win.colourButton = win.add('button', undefined, 'Set Labels'); 
             win.colourButton.alignment = 'fill';
 
             win.colourButton.onClick = function () {
@@ -182,14 +182,14 @@
                 if (app.project) {
                     var userItems = app.project.selection;
                     if (userItems != 0) {
-                        app.beginUndoGroup(zl_CPI__scriptName);
-                        zl_ColourProjectItems(thisObj, curColour, win.targetGroup.children);
+                        app.beginUndoGroup(zl_PIL__scriptName);
+                        zl_ProjectItemLabels(thisObj, curColour, win.targetGroup.children);
                         app.endUndoGroup();
                     } else {
-                        alert("Select at least one item!", zl_CPI__scriptName);
+                        alert("Select at least one item!", zl_PIL__scriptName);
                     }
                 } else {
-                    alert("Open a project!", zl_CPI__scriptName);
+                    alert("Open a project!", zl_PIL__scriptName);
                 }
             }
         } // end Buttons
@@ -203,7 +203,7 @@
 
 
     /****************************** 
-        zl_ColourProjectItems_main()
+        zl_ProjectItemLabels_main()
           
         Description:
         Main function
@@ -214,11 +214,11 @@
         Returns:
         Nothing
      ******************************/
-    function zl_ColourProjectItems_main(thisObj) {
-        zl_ColourProjectItems_createPalette(thisObj);
+    function zl_ProjectItemLabels_main(thisObj) {
+        zl_ProjectItemLabels_createPalette(thisObj);
     } // end function main
 
 
     // RUN!
-    //zl_ColourProjectItems(this);
-    zl_ColourProjectItems_main(this);
+    //zl_ProjectItemLabels(this);
+    zl_ProjectItemLabels_main(this);
