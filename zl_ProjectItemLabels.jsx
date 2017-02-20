@@ -29,62 +29,65 @@
             version: "1.0",
         };
 
-        function colourProjectItems (thisObj, curColour, objArray) {
-            var userItems = app.project.selection;
-            var noChecks = true;
-
-            for (var i = 0, il = objArray.length; i < il; i++)
-                if (objArray[i].value){
-                    noChecks = false;
-                    break;
-                }
-
-            if (noChecks){ // If no item type is selected
-                alert("Select an item type!");
-            } else {
-                if (userItems.length == 0){ // If no items are selected
-                    alert("Select at least one item!", Config.name);
-                } else {
-                    doColourItem (curColour, objArray, userItems, null);
-                }
-            }
+        var curColour = 0;
+        var colourItems = {
+            All: true,
+            Folder: false,
+            Footage: false,
+            Precomp: false,
+            Solid: false,
+            Placeholder: false,
         };
 
-        function doColourItem (curColour, objArray, userItems, folderLoc) {
-            var curLength = 0;
+        function colourProjectItems () {
+            var proj = app.project;
+            if (!proj || proj.numItems == 0) {
+                alert("Open a project!", Config.name);
+                return;
+            };
+
+            var userItems = proj.selection;
+            if (proj.selection.length == 0 )
+                userItems = proj.items;
+
+            app.beginUndoGroup(Config.name);
+            doColourItems (userItems, null);
+            app.endUndoGroup();
+        };
+
+        function doColourItems (userItems, folderLoc) {
+            var curLength = userItems.length;
             var startCount = 0;
 
-            curLength = userItems.length;
-
-            if (folderLoc !== null){
+            if (folderLoc !== null) {
                 startCount = 1;
                 folderLoc ++;
                 curLength ++;
             }
 
-            for (var i = startCount, il = curLength; i < il; i++){
+            for (var i = startCount, il = curLength; i < il; i++) {
                  var thisItem = userItems[i];
 
-                if (objArray[0].value){
+                if (colourItems["All"]) {
                     thisItem.label = curColour;
                     if (thisItem instanceof FolderItem)
-                        doColourItem (curColour, objArray, thisItem.items, i);
+                        doColourItems (thisItem.items, i);
                 } else {
-                    if (thisItem instanceof FolderItem){ // is folder
-                        if (objArray[1].value)
+                    if (thisItem instanceof FolderItem) {
+                        if (colourItems["Folder"])
                             thisItem.label = curColour;
-                        doColourItem (curColour, objArray, thisItem.items, i);
+                        doColourItems (thisItem.items, i);
                     }
 
-                    if ((thisItem instanceof CompItem) && (objArray[3].value)) // is precomp
+                    if (colourItems["Precomp"] && thisItem instanceof CompItem) // is precomp
                         thisItem.label = curColour;
 
-                    if (thisItem instanceof FootageItem){
-                        if (!((thisItem.mainSource instanceof SolidSource) || (thisItem.mainSource instanceof PlaceholderSource)) && objArray[2].value){ // is footage
+                    if (thisItem instanceof FootageItem) {
+                        if (colourItems["Footage"] && !(thisItem.mainSource instanceof SolidSource || thisItem.mainSource instanceof PlaceholderSource)) {
                             thisItem.label = curColour;
-                        } else if ((thisItem.mainSource instanceof SolidSource) && (objArray[4].value)){ // is solid
+                        } else if (colourItems["Solid"] && thisItem.mainSource instanceof SolidSource) {
                             thisItem.label = curColour;
-                        } else if ((thisItem.mainSource instanceof PlaceholderSource) && (objArray[5].value)){ // is placeholder
+                        } else if (colourItems["Placeholder"] && thisItem.mainSource instanceof PlaceholderSource) {
                             thisItem.label = curColour;
                         }
                     }
@@ -96,36 +99,45 @@
             var win = (thisObj instanceof Panel) ? thisObj : new Window('palette', Config.name + " v" + Config.version, undefined);
 
             { // Target
-                win.targetGroup = win.add('panel', undefined, 'Target', {borderStyle: "etched"});
-                win.targetGroup.alignChildren = "left";
+                var targetGroup = win.add('panel', undefined, 'Target', {borderStyle: "etched"});
+                    targetGroup.alignChildren = "left";
 
-                win.targetGroup.allToggle = win.targetGroup.add('checkbox', undefined, '\u00A0All');
-                win.targetGroup.folderToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Folder');
-                win.targetGroup.footageToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Footage');
-                win.targetGroup.precompToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Precomp');
-                win.targetGroup.solidToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Solid');
-                win.targetGroup.placeholderToggle = win.targetGroup.add('checkbox', undefined, '\u00A0Placeholder');
+                    var allToggle         = targetGroup.add('checkbox', undefined, 'All');
+                    var folderToggle      = targetGroup.add('checkbox', undefined, 'Folder');
+                    var footageToggle     = targetGroup.add('checkbox', undefined, 'Footage');
+                    var precompToggle     = targetGroup.add('checkbox', undefined, 'Precomp');
+                    var solidToggle       = targetGroup.add('checkbox', undefined, 'Solid');
+                    var placeholderToggle = targetGroup.add('checkbox', undefined, 'Placeholder');
 
-                win.targetGroup.allToggle.value = true;
-                for (var i = 1, il = win.targetGroup.children.length; i < il; i++)
-                        win.targetGroup.children[i].enabled = false;
+                    for (var i = 1, il = targetGroup.children.length; i < il; i++) {
+                        var thisBox = targetGroup.children[i];
+                        thisBox.enabled = false;
+                        thisBox.onClick = function() {
+                            colourItems[this.text] = this.value;
+                        }
+                    }
 
-                win.targetGroup.allToggle.onClick = function(){
-                    for (var i = 1, il = win.targetGroup.children.length; i < il; i++)
-                        win.targetGroup.children[i].enabled = Math.abs(1-this.value);
-                }
+                    allToggle.value = true;
 
+                    allToggle.onClick = function() {
+                        colourItems[this.text] = this.value;
+
+                        for (var i = 1, il = targetGroup.children.length; i < il; i++) {
+                            var thisBox = targetGroup.children[i];
+                            if (this.value == true) colourItems[thisBox.text] = thisBox.value = false;
+                            thisBox.enabled = Math.abs(1 - this.value);
+                        }
+                    }
             }
 
             { // Dropdown
                 var labelNameArray = ["None", "Red", "Yellow", "Aqua", "Pink", "Lavender", "Peach", "Sea Foam", "Blue", "Green", "Purple", "Orange", "Brown", "Fuschia", "Cyan", "Sandstone", "Dark Green"];
-                var curColour = 0;
 
                 win.colourPanel = win.add('panel', undefined, 'Colour');
                 win.colourPanel.colourList = win.colourPanel.add('dropdownlist', undefined, labelNameArray);
                 win.colourPanel.colourList.selection = 0;
 
-                win.colourPanel.colourList.onChange = function(){
+                win.colourPanel.colourList.onChange = function() {
                     curColour = win.colourPanel.colourList.selection.index;
                 }
             } // end Dropdown
@@ -135,19 +147,7 @@
                 win.colourButton.alignment = 'fill';
 
                 win.colourButton.onClick = function () {
-
-                    if (app.project) {
-                        var userItems = app.project.selection;
-                        if (userItems != 0) {
-                            app.beginUndoGroup(Config.name);
-                            colourProjectItems(thisObj, curColour, win.targetGroup.children);
-                            app.endUndoGroup();
-                        } else {
-                            alert("Select at least one item!", Config.name);
-                        }
-                    } else {
-                        alert("Open a project!", Config.name);
-                    }
+                    colourProjectItems();
                 }
             } // end Buttons
 
