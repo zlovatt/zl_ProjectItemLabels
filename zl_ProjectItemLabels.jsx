@@ -49,8 +49,9 @@
             }
 
             var userItems = proj.selection;
-            if (proj.selection.length === 0 )
-                userItems = proj.items;
+            if (proj.selection.length === 0)
+                for (var i = 1, il = proj.numItems; i <= il; i++)
+                    userItems.push(proj.item(i));
 
             app.beginUndoGroup(Config.name);
             doColourItems (userItems, null);
@@ -151,9 +152,7 @@
                 win.colourButton.alignment = 'fill';
 
                 win.colourButton.onClick = function () {
-                    // alert(JSON.stringify(userLabels));
-                    alert(JSON.stringify(updateLabelNames(defaultLabels)));
-                    // colourProjectItems();
+                    colourProjectItems();
                 };
             } // end Buttons
 
