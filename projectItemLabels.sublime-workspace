@@ -1,0 +1,637 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Time",
+				"TimeDisplayType"
+			],
+			[
+				"align",
+				"alignment"
+			],
+			[
+				"ali",
+				"alignment"
+			],
+			[
+				"alignm",
+				"alignment"
+			],
+			[
+				"alig",
+				"alignChildren"
+			],
+			[
+				"navAppl",
+				"navApplyBtn"
+			],
+			[
+				"navApply",
+				"navApplyGrp"
+			],
+			[
+				"navi",
+				"navigationTab"
+			],
+			[
+				"forall",
+				"forAllItemsInArray"
+			],
+			[
+				"forAllI",
+				"forAllPropsInGroup"
+			],
+			[
+				"forAll",
+				"forAllItemsInArray"
+			],
+			[
+				"keyedP",
+				"keyedPropArray"
+			],
+			[
+				"keyer",
+				"keyedPropArray"
+			],
+			[
+				"matches",
+				"matchesNextCount"
+			],
+			[
+				"arra",
+				"arraysEqual"
+			],
+			[
+				"write",
+				"writeln\twriteLn() - Line Break"
+			],
+			[
+				"canUn",
+				"canUnBakeProperty"
+			],
+			[
+				"isv",
+				"isinterpolationtypevalid\t.isInterpolationTypeValid()"
+			],
+			[
+				"sourceProp",
+				"sourcePropObject"
+			],
+			[
+				"drawNu",
+				"drawNullFill"
+			],
+			[
+				"drawN",
+				"drawNullStroke"
+			],
+			[
+				"filBu",
+				"fillButtonTop"
+			],
+			[
+				"cursor",
+				"colourSelectCursor"
+			],
+			[
+				"mouse",
+				"mouseLocation"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 163.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"jsh",
+				"JSHint"
+			],
+			[
+				"minima",
+				"View: Toggle Minimap"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"keyb",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"prett",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"minim",
+				"View: Toggle Minimap"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"pret",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"caps",
+				"Convert Case: Upper Case"
+			],
+			[
+				"plain te",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"javs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jasv",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"gt",
+				"GitGutter: Compare Against HEAD"
+			],
+			[
+				"git",
+				"GitGutter: Compare Against Origin"
+			],
+			[
+				"pretty",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"pastry",
+				"Text Pastry: From 1 To X"
+			],
+			[
+				"javascr",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"pastry 1",
+				"Text Pastry: From 1 To X"
+			],
+			[
+				"package contr",
+				"Package Control: Satisfy Dependencies"
+			]
+		],
+		"width": 804.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Zack/OneDrive/Projects/Scripts/zl_ProjectItemLabels"
+	],
+	"file_history":
+	[
+		"/C/Users/Zack/OneDrive/Projects/Scripts/misfits/misfits.sublime-project",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/misfits/jsx/app/prefkey.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/misfits/jsx/framework/preferences.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/misfits/jsx/ui/mainui.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/misfits/package.json",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/misfit/misfit.sublime-project",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/misfit/misfit.sublime-workspace",
+		"/Z/Users/zlova/Downloads/Media/Etc/Curva Script/SN.txt",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/flow/Extension/com.rendertom.flow/js/main.js",
+		"/Z/Users/zlova/AppData/Roaming/Adobe/After Effects/14.1/logs/AfterFX_2017-01-20_211155_TONKA.crash",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/flow/Extension/com.rendertom.flow/js/errorCollect.js",
+		"/Z/Users/zlova/Downloads/Media/TV/Ray Donovan/Ray Donovan - Season 3/Ray.Donovan.S03E01.HDTV.x264-BATV[ettv]/ray.donovan.s03e01.hdtv.x264-batv.nfo",
+		"/Z/Users/zlova/Downloads/Media/TV/Ray Donovan/Ray Donovan - Season 3/Ray.Donovan.S03E01.HDTV.x264-BATV[ettv]/Torrent-Downloaded-From-extratorrent.cc.txt",
+		"/Z/Users/zlova/Downloads/csxs5-AEFT.log",
+		"/Z/Users/zlova/Downloads/csxs6-AEFT.log",
+		"/Z/Users/zlova/Downloads/cef_debug.log",
+		"/W/ZL1703_PIXO_Patriot/lib/assets/Grunge/012_grunge_splatter/Terms.txt",
+		"/W/ZL1703_PIXO_Patriot/lib/Fonts List.txt",
+		"/W/ZL1703_PIXO_Patriot/lib/fonts/Doodles/pottymouth_bb/font info.txt",
+		"/Z/Users/zlova/Downloads/flow_v1.1.3_monter/flow_v1.1.3/flow v1.1.3/flow v1.1.3 (CC2015+)/Flow/js/flow.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/build/README.md",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/CorporateLift/CorporateLift.jsx",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/reMarker/jsx/ui.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/reMarker/jsx/_bottom.inc",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/reMarker/jsx/_top.inc",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/reMarker/jsx/config.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/zl_FindLargeFiles/zl_FindLargeFiles.jsx",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/reMarker/gulpfile.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/explode-shape-layers/zl_ExplodeShapeLayers.jsx",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/reMarker/build/body.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/reMarker/build/script.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/_lib/utilityFunctions.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/_lib/genericFunctions.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/flow/README.md",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/main.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/package.json",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/gulpfile.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/config.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/_bottom.inc",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/_top.inc",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/helptext.txt",
+		"/C/Program Files/Adobe/Adobe After Effects CC 2017/Support Files/Scripts/reMarker.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/scripts/exportjsxbin.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/scripts/exportjsxbin.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/jsx/main.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/reMarker.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/jsx/config.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/ui.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/utilities.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/jsx/ui.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/build/script.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/build/body.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/build/changelog.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/gulpfile.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/package.json",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/reMarker.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/.gitignore",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/.gitignore",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/reMarker.sublime-project",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/easy-bake/README.md",
+		"/Z/Users/zlova/Desktop/.htaccess",
+		"//ZURFACE/Downloads/Add Delete Frames.jsx",
+		"//ZURFACE/Downloads/imageListener.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Prism/Prism.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Prism/Prism_noUI_ColourByType.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Scriptlets/_secretScripts/toggleThemeColorizing.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Scriptlets/zl_setAE14AccentColour.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Scriptlets/toggleThemeColorizing.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/explode-shape-layers/explode-shape-layers.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/explode-shape-layers/jsx/app/tester.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/_lib/json2.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/reMarker.sublime-workspace",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/reMarker/Readme.md",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Scriptlets/zl_selectKeysInWorkArea.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Scriptlets/readme.md",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Scriptlets/zl_selectKeysInWorkArea.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/CompMarkers/CompMarkers.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/CompMarkers/Readme.md",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/CompMarkers/Package/CompMarkers-v0.1.0/Readme.txt",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/CompMarkers/Package/CompMarkers-v0.1.0/Readme.md",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/CompMarkers/selectKeysUnderMarker.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/CompMarkers/.gitignore",
+		"/Z/Users/zlova/AppData/Roaming/Sublime Text 3/Packages/User/AECC17_ScriptUI/AECC17_ScriptUI.sublime-build",
+		"/Z/Users/zlova/AppData/Roaming/Sublime Text 3/Packages/User/AECC17_ScriptUI/build.bat",
+		"/Z/Users/zlova/AppData/Roaming/Sublime Text 3/Packages/User/AECC17_Script/build.bat",
+		"/Z/Users/zlova/AppData/Roaming/Sublime Text 3/Packages/User/AECC17_Script/AECC17_Script.sublime-build",
+		"/Z/Users/zlova/AppData/Roaming/Sublime Text 3/Packages/User/AECC17_ScriptUI/AECC15.3_ScriptUI.sublime-build",
+		"/Z/Users/zlova/AppData/Roaming/Sublime Text 3/Packages/User/AECC17_ScriptUI/build.sh",
+		"/Z/Users/zlova/AppData/Roaming/Sublime Text 3/Packages/User/AECC17_ScriptUI/run.scpt",
+		"/C/Users/Zack/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Zack/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Zack/Downloads/unZip.jsx",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/ESL4/gulpfile.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/ESL4/README.md",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/Easy-Bake/README.md",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/Easy-Bake/jsx/app/bake.js",
+		"/C/Users/Zack/OneDrive/Projects/Scripts/Easy-Bake/helptext.txt",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/README.md",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/helptext.txt",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/framework/util.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/app/optimize.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/main.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/app/bake.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/package.json",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/ui/mainui.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/libs/aesp-licensing.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/gulpfile.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/app/unbake.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/framework/aehelpers.js",
+		"/Z/users/zlova/Downloads/compCode 02.html/compCode 02.html",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/config.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/ui/heavyprojectui.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/ui/progressui.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/node_modules/camelcase-keys/index.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/jsx/app/ignore.js",
+		"/Z/Users/zlova/Dropbox/aescripts Licensing/Zack Lovatt/trial_serialization_v2_el.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy Bake",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy-Bake/easyBake.sublime-project",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_ExplodeShapeLayers/zl_ExplodeShapeLayers.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Prism/Prism_noUI_ColourParentChain.jsx",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy Bake/jsx/framework/aehelpers.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy Bake/jsx/framework/util.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy Bake/.git/config",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/Easy Bake/package.json",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Kiln/jsx/app/unbake.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Kiln/jsx/main.js",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Kiln/helptext.txt",
+		"/Z/Users/zlova/OneDrive/Projects/Scripts/zl_Kiln/README.md"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			"",
+			"Z:\\Users\\zlova\\OneDrive\\Projects\\Scripts\\easy-bake",
+			"Z:\\Users\\zlova\\OneDrive\\Projects\\Scripts\\Easy-Bake\\",
+			"Z:\\Users\\zlova\\OneDrive\\Projects\\Scripts\\Easy Bake\\",
+			"Z:\\Users\\zlova\\OneDrive\\Projects\\Scripts\\Easy Bake",
+			"\"Z:\\Users\\zlova\\OneDrive\\Projects\\Scripts\\Easy Bake\\\"",
+			"\"Z:\\Users\\zlova\\OneDrive\\Projects\\Scripts\\easy bake\"",
+			"Z:\\Users\\zlova\\OneDrive\\Projects\\Scripts\\zl_Kiln",
+			"Z:\\Users\\zlova\\AppData\\Roaming\\Adobe\\After Effects",
+			"Z:\\Users\\zlova\\AppData\\Roaming\\",
+			"Z:\\Users\\zlova\\AppData",
+			"Z:\\Users\\zlova\\AppData\\Roaming\\Adobe\\After Effects\\",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"tweaker",
+			"myComp",
+			"grp1",
+			"remarker",
+			"reMarker",
+			"Logs",
+			" > ",
+			"\r",
+			"\"none\"",
+			"SCRIPTS_DIR",
+			"zl_ESL_createPalette",
+			"win.",
+			"//",
+			"isProjectTime",
+			"isProjectTimecode",
+			"getScriptUiPanelDir",
+			"Config.timecodeStr",
+			"updateNavWi",
+			"parseUserTime",
+			"composition",
+			"false",
+			"updateNavWindow",
+			"submitMarkerData",
+			"buildMarkerObjectArray",
+			"clearMarkers",
+			"getMarkersWithDuration",
+			"sourceMarkerGroup",
+			"setMarkersFromObjectArray",
+			"buildMarkerObjectArray",
+			"getScriptUiPanelDir",
+			"SCRIPTUI_DIR",
+			"SCRIPT_DIR",
+			"getScriptUiPanelDir",
+			"gulp",
+			"2015",
+			"compMarkers",
+			"navIdx",
+			"timecodeStr",
+			"versionNumber",
+			"scriptName",
+			"updateNavWindow",
+			"changelog",
+			"jshint",
+			"jsescape",
+			"BUILDSCRIPT:CHANGE_LOG",
+			"changelog",
+			"del",
+			"zip",
+			"markdownpdf",
+			"rseq",
+			"rsq",
+			"jsescape",
+			"markdownpdf",
+			"jsescape",
+			"shell",
+			"replace",
+			"useCustomTypeLabelsRadioYes",
+			"buildMarkerObjectArray",
+			"thisMarker.duration",
+			"Duration",
+			"duration",
+			"Duration",
+			"sourceMarkerGroup",
+			"setMarkersFromObjectArray",
+			"beginUndoGroup",
+			"property",
+			"shiftK",
+			"submitMarkerData",
+			"time",
+			"marker",
+			"+",
+			"fieldWidth",
+			"containerOffer",
+			"durationLabel",
+			"backgroundColor",
+			"preferredSize",
+			"changeTimeGrp",
+			"fieldWidth",
+			"fill",
+			"timeValGrp",
+			"navTimeGrp",
+			"alignChildren",
+			"timeValGrp",
+			".7",
+			"navTimeGrp",
+			"timeDnBtn",
+			"timeUp",
+			"changeTimeGrp",
+			"Time",
+			"time",
+			"Time",
+			"time",
+			"Time",
+			"time",
+			"Time",
+			"changeTimeGrp",
+			"navTimeGrp",
+			"timeUpBtn",
+			"timecodeStr",
+			"\".\"",
+			".",
+			"'.'",
+			"getKeyedProp",
+			"getMarkersWithDuration",
+			"copyMarkers",
+			"keyedProps",
+			"getactivecomp()",
+			"getmarkerGroup",
+			"markerGroup",
+			"updateNavWindow",
+			"\"00:00:00:00\"",
+			"\"0:00:00:00\"",
+			"navigateMarkers",
+			"navMoveCTIChk.value",
+			"submitMarkerData",
+			"parseUserTime",
+			"submitMarkerData",
+			"parseUserTime",
+			"submitMarkerData",
+			"parseUserTime",
+			"str",
+			"markerObjectArray.length",
+			"clamp",
+			"markerIndex",
+			"0",
+			"markerObjectArray",
+			"frameDuration",
+			"markerObjectArray"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Config.navIdx",
+			"\t",
+			"\n",
+			"Z:\\Users\\zlova\\"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/AECC17_Script/AECC17_Script.sublime-build",
+	"project": "projectItemLabels.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"main",
+				"Meta\\Adobe After Effects Auto-Save\\Kiln Sample auto-save 24.aep"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 750.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Zack\\OneDrive\\Projects\\Scripts\\Easy-Bake\\easyBake.sublime-project"
+			]
+		],
+		"width": 570.0
+	},
+	"select_symbol":
+	{
+		"height": 41.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 400.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 309.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
