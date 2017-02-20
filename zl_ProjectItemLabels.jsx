@@ -56,7 +56,7 @@
             if (userItems.length == 0){ // If no items are selected
                 alert("Select at least one item!", zl_PIL__scriptName);
             } else {
-                zl_ProjectItemLabels_colourItems(curColour, objArray, userItems, null);
+                zl_ProjectItemLabels_colourItems (curColour, objArray, userItems, null);
             }
         }
 
@@ -78,31 +78,30 @@
         Returns:
         Nothing.
      ******************************/
-    function zl_ProjectItemLabels_colourItems(curColour, objArray, userItems, folderLoc){
+    function zl_ProjectItemLabels_colourItems (curColour, objArray, userItems, folderLoc) {
         var curLength = 0;
-        var itemCounter = 0;
         var startCount = 0;
 
         curLength = userItems.length;
 
-        if (folderLoc != null){
+        if (folderLoc !== null){
             startCount = 1;
             folderLoc ++;
             curLength ++;
         }
 
-        for (itemCounter = startCount, il = curLength; itemCounter < il; itemCounter++){
-             var thisItem = userItems[itemCounter];
+        for (var i = startCount, il = curLength; i < il; i++){
+             var thisItem = userItems[i];
 
             if (objArray[0].value){
                 thisItem.label = curColour;
                 if (thisItem instanceof FolderItem)
-                    zl_ProjectItemLabels_colourItems (curColour, objArray, thisItem.items, itemCounter);
+                    zl_ProjectItemLabels_colourItems (curColour, objArray, thisItem.items, i);
             } else {
                 if (thisItem instanceof FolderItem){ // is folder
                     if (objArray[1].value)
                         thisItem.label = curColour;
-                    zl_ProjectItemLabels_colourItems (curColour, objArray, thisItem.items, itemCounter);
+                    zl_ProjectItemLabels_colourItems (curColour, objArray, thisItem.items, i);
                 }
 
                 if ((thisItem instanceof CompItem) && (objArray[3].value)) // is precomp
