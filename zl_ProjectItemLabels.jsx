@@ -1,10 +1,10 @@
 ﻿/**********************************************************************************************
     zl_ProjectItemLabels
-    Copyright (c) 2013 Zack Lovatt. All rights reserved.
+    Copyright (c) 2017 Zack Lovatt. All rights reserved.
     zack@zacklovatt.com
 
     Name: zl_ProjectItemLabels
-    Version: 1.0
+    Version: 1.5
 
     Description:
         This script sets the label colour for all selected items as specified.
@@ -26,7 +26,7 @@
     function zl_projectItemLabels (thisObj) {
         var Config = {
             name: "zl_ProjectItemLabels",
-            version: "1.0",
+            version: "1.5",
         };
 
         var defaultLabels = [{"name":"None","value":"FF666666"},{"name":"Red","value":"FFB5\"88\""},{"name":"Yellow","value":"FF\"J\"A4\"L\""},{"name":"Aqua","value":"FF8E\",\"9A"},{"name":"Pink","value":"FFE8920D"},{"name":"Lavender","value":"FF7F\"E*\""},{"name":"Peach","value":"FFF4\"m\"D6"},{"name":"Sea Foam","value":"FF\"=\"A2A5"},{"name":"Blue","value":"FFA896\"w\""},{"name":"Green","value":"FF1E\"@\"1E"},{"name":"Purple","value":"FFE4D8\"L\""},{"name":"Orange","value":"FFA9CBC7"},{"name":"Brown","value":"FFE5BCC9"},{"name":"Fuschia","value":"FFA9A9CA"},{"name":"Cyan","value":"FFE7C19E"},{"name":"Sandstone","value":"FFB3C7B3"},{"name":"Dark Green","value":"FF\"g}\"E0"}];

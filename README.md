@@ -1,9 +1,9 @@
 ### zl_ProjectItemLabels
-#### Version: 1.0
-##### Copyright (c) 2015 Zack Lovatt (zack@zacklovatt.com). All rights reserved.
+#### Version: 1.5
+##### Copyright (c) 2017 Zack Lovatt (zack@zacklovatt.com). All rights reserved.
 
 This script is provided "as is," without warranty of any kind, expressed
-or implied. In no event shall the author be held liable for any damages 
+or implied. In no event shall the author be held liable for any damages
 arising in any way from the use of this script.
 
 -----------------------
@@ -21,10 +21,10 @@ Originally requested by Ronald Molina (ronalith.com)
 -----------------------
 ##### Installation
 
-Copy "zl_ProjectItemLabels" to your ScriptUI Panels folder, usually here:
+Copy "zl_ProjectItemLabels.jsx" to your ScriptUI Panels folder, usually here:
 
-* PC:	C:\Program Files\Adobe\Adobe After Effects CC\Support Files\Scripts\ScriptUI Panels\
-* Mac:	\Applications\Adobe After Effects CC\Scripts\ScriptUI Panels\
+* PC:	C:\Program Files\Adobe\Adobe After Effects CC 2017\Support Files\Scripts\ScriptUI Panels\
+* Mac:	/Applications/Adobe After Effects CC 2017/Scripts/ScriptUI Panels/
 
 If the ScriptUI Panels folder does not exist, create it.
 
@@ -32,4 +32,9 @@ If the ScriptUI Panels folder does not exist, create it.
 
 ##### Changelog
 
-* 1.0	- Initial Release
+* 1.5 - 2017/02/19
+	- Adds support for custom label colours
+    - Fixes bug with crashing on launch
+    - Cleans up code a _lot_
+* 1.0 - 2013/05/22
+	- Initial Release
